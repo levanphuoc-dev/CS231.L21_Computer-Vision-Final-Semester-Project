@@ -423,9 +423,22 @@ def makeup_main(url_subject, url_target):
     res = apply_makeup(sub, warped_tar)
     return res
 
+def crop_img(img):
+    w, h = img.shape[:2]
+
+    for i in range(h)[::-1]:
+        if img[i][0][0] < 254:
+            img = img[0:i,:]
+            break
+    return img
+
 # url_sub = 'Original_Image/Kim_Yong_Ji.jpg'
-# url_tag = 'Target_Image/bibidong.jpg'
+# url_tag = 'Target_Image/target_2.jpg'
+# img_sub = cv2.imread(url_sub)
+# cv2.imshow('img_sub', img_sub)
+# img_tag = cv2.imread(url_tag)
+# cv2.imshow('img_tag', img_tag)
 # img = makeup_main(url_sub, url_tag)
-# print(img)
+# img = crop_img(img)
 # cv2.imshow('img', img)
 # cv2.waitKey(0)
