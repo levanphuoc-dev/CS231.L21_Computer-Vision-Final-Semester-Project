@@ -35,10 +35,11 @@ class Window(QMainWindow, Ui_MainWindow):
     def save_file(self):
         fileName = QFileDialog.getSaveFileName(self, str("Save File"), "C:/Users/ASUS/OneDrive - Trường ĐH CNTT - University of Information Technology/Máy tính/ComputerVision/Final_Project/final_project_of_Computer_Vision/Final_Image/untitled.jpg", str("Images (*.png *.xpm *.jpg)"))
         fileName = fileName[0]
-        fileName = list(fileName.split('/'))
-        fileName = str(fileName[len(fileName) - 2]) + '/' + str(fileName[len(fileName)-1])
-        img = self.arr_img[len(self.arr_img) - 1]
-        cv2.imwrite(fileName, img)
+        if fileName != None:
+            fileName = list(fileName.split('/'))
+            fileName = str(fileName[len(fileName) - 2]) + '/' + str(fileName[len(fileName)-1])
+            img = self.arr_img[len(self.arr_img) - 1]
+            cv2.imwrite(fileName, img)
 
 
     def run(self):
@@ -55,6 +56,8 @@ class Window(QMainWindow, Ui_MainWindow):
 
         img = makeup.makeup_main(url_orig, url_targ)
 
+        img = self.crop_img(img)
+
         if len(self.arr_img) != 0:
             self.arr_img.pop(0)
         self.arr_img.append(img)
@@ -64,6 +67,15 @@ class Window(QMainWindow, Ui_MainWindow):
         item = QtWidgets.QGraphicsPixmapItem(pixmap)
         scene.addItem(item)
         self.graphicsView_2.setScene(scene)
+
+    def crop_img(self, img):
+        w, h = img.shape[:2]
+
+        for i in range(h)[::-1]:
+            if img[i][0][0] < 250:
+                img = img[0:i, :]
+                break
+        return img
 
     def convert_cv_qt(self, cv_img):
         """Convert from an opencv image to QPixmap"""
