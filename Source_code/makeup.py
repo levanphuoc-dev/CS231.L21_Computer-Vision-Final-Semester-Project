@@ -7,6 +7,7 @@ from imutils import face_utils
 
 # initialize dlib's face detector (HOG-based) and then create
 # the facial landmark predictor
+
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
@@ -414,6 +415,15 @@ def apply_makeup(subject, warped_target):
     return res
 
 
+# def crop_img(img):
+#     w, h = img.shape[:2]
+#     for i in range(0, h - 1)[::-1]:
+#         if img[i][0][0] > 10:
+#             img = img[0:i, :]
+#             break
+#     return img
+
+
 def makeup_main(url_subject, url_target):
     subject = cv2.imread(url_subject, 1)
     target = cv2.imread(url_target, 1)
@@ -421,18 +431,13 @@ def makeup_main(url_subject, url_target):
     target = imutils.resize(target, width=500)
     sub, warped_tar = warp_target(subject, target)
     res = apply_makeup(sub, warped_tar)
+    #res = crop_img(res)
     return res
 
-def crop_img(img):
-    w, h = img.shape[:2]
 
-    for i in range(h)[::-1]:
-        if img[i][0][0] < 254:
-            img = img[0:i,:]
-            break
-    return img
 
-# url_sub = 'Original_Image/Kim_Yong_Ji.jpg'
+
+# url_sub = 'Original_Image/luudiepphi.jpg'
 # url_tag = 'Target_Image/target_2.jpg'
 # img_sub = cv2.imread(url_sub)
 # cv2.imshow('img_sub', img_sub)

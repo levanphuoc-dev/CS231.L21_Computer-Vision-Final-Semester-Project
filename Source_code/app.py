@@ -70,9 +70,8 @@ class Window(QMainWindow, Ui_MainWindow):
 
     def crop_img(self, img):
         w, h = img.shape[:2]
-
-        for i in range(h)[::-1]:
-            if img[i][0][0] < 250:
+        for i in range(0, h - 1)[::-1]:
+            if img[i][0][0] > 10:
                 img = img[0:i, :]
                 break
         return img
@@ -83,8 +82,8 @@ class Window(QMainWindow, Ui_MainWindow):
         h, w, ch = rgb_image.shape
         bytes_per_line = ch * w
         convert_to_Qt_format = PyQt5.QtGui.QImage(rgb_image.data, w, h, bytes_per_line, QtGui.QImage.Format_RGB888)
-        #p = convert_to_Qt_format.scaledToHeight(570)
-        p = convert_to_Qt_format
+        p = convert_to_Qt_format.scaledToHeight(570)
+        #p = convert_to_Qt_format
         return QPixmap.fromImage(p)
 
 
