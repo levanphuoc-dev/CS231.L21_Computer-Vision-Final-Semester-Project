@@ -13,7 +13,7 @@
 # THÀNH VIÊN NHÓM 
 | STT |   MSSV   |   Vai Trò   |      Họ và Tên      |          Email         |
 |:---:|:--------:|:-----------:|:-------------------:|:----------------------:|
-| 1   | 19522054 | Thành viên  | Lê Văn Phước     | 19522054@gm.uit.edu.vn |
+| 1   | 19522054 | Trưởng nhóm  | Lê Văn Phước     | 19522054@gm.uit.edu.vn |
 | 2   | 16521503 | Thành viên  | Trần Khánh Hà    | 16521503@gm.uit.edu.vn |
 | 3   | 19521663 | Thành viên  | Nguyễn Duy Khang  | 19521663@gm.uit.edu.vn |
 | 4 | 16521759 | Thành viên | Trương Văn Nhất | 16521759@gm.uit.edu.vn |
